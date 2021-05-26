@@ -2,30 +2,31 @@ import React,{useState} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi'
 import './styles.css';
-import logoImg from '../../assets/logo.svg'
+import logoImg from '../../assets/logo.png'
 import api from '../../servers/api';
 
 export default function NewIncident(){
 
-    const [title, setTitle] = useState('');
+    const [nome, setNome] = useState('');
     const [description, setDescription] = useState('');
     const [value, setValue] = useState('');
 
-    const ongId = localStorage.getItem('ongId');
+    const restauranteId = localStorage.getItem('restauranteId');
     const history = useHistory();
 
    async function handleNewIncident(e){
         e.preventDefault();
 
         const data ={
-            title,
-            description,
-            value            
+            "restauranteResponsavel": restauranteId,
+            "nome": nome,
+            "descricao": description,
+            "valor": value            
         };
 
         try
         {
-            const response = await api.post('incidents', data,{
+            const response = await api.post('restaurantes/produtos', data,{
                     headers: {
                         Authorization: ongId,
                     }
@@ -47,8 +48,8 @@ export default function NewIncident(){
             <div className="content">
                 <section>
                     <img src={logoImg} alt="Cardápio Digital"/>
-                    <h1>Cadastrar novo caso</h1>
-                    <p>Descreva o caso detalhadamente para encontrar um herói para resolver isso.</p>
+                    <h1>Cadastrar novo item</h1>
+                    <p>Descreva detalhadamente o item para incluir ao seu cardápio.</p>
                     <Link className="back-link" to="/profile">
                        <FiArrowLeft size={16} color="#E02041"/>
                        Voltar para home

@@ -51,11 +51,12 @@ export default function Register() {
 
         try
         {
-            const getUsuario = await api.get('api/v1/usuarios');
+            //const getUsuario = await api.get('api/v1/usuarios');
 
-            console.log(getUsuario);
+            //console.log(getUsuario);
 
-            const usuario = await api.post('api/v1/usuarios', dataUsuario);
+            const usuario = await api.post('usuarios', dataUsuario);
+            const restaurante = await api.post('restaurantes', dataRestaurante);
 
            /* const usuario = await api.post('http://localhost:8080/api/v1/usuarios', dataUsuario, {
                 headers: {
@@ -64,15 +65,15 @@ export default function Register() {
                     'Cookie': 'JSESSIONID=D038DA7FFD963082B22165CC27596C5A'
                 }
             });*/
-            const restaurante = await api.post('restaurantes', dataRestaurante, {
+           /* const restaurante = await api.post('restaurantes', dataRestaurante, {
                 headers: {
                     'Authorization': 'Basic YWRtaW46YWRtaW4=', 
                     'Content-Type': 'application/json', 
                     'Cookie': 'JSESSIONID=D038DA7FFD963082B22165CC27596C5A'
                 }
-            });
+            });*/
 
-            alert(`Seu Email de acesso: ${usuario.data.email} e o nome do seu restaurante:  ${restaurante.data.nome}` );
+            alert(`Seu Email de acesso: ${usuario.data.email} e o nome do seu restaurante: ${restaurante.data.nome}` );
 
             history.push('/');
         }

@@ -7,23 +7,26 @@ import api from '../../servers/api';
 
 export default function Profile(){
 
-    const [incidents, setIncidents] = useState([]);
+    const [cardapio, setCardapio] = useState([]);
     const history = useHistory();
-    const ongId = localStorage.getItem('ongId');
-    const ongName = localStorage.getItem('ongName');
-
+    const usuarioDados = localStorage.getItem('usuarioDados');
+    const restauranteDados = localStorage.getItem('restauranteDados');
+    const restauranteID = restauranteDados.id;
+/*localStorage.setItem('usuarioDados',responseUsuarios[0]);
+                localStorage.setItem('restauranteDados',responseRestaurante.data[0]);
+                */
     useEffect(() => {
-        api.get('profile',{
+        api.get(`restaurantes/produtos/${restauranteDados.id}`,{
             headers: {
-                Authorization: ongId,
+                Authorization: restauranteID,
             }
         }).then( response =>{
-            setIncidents(response.data);
+            setCardapio(response.data);
         } )
 
-    }, [ongId]);
+    }, [restauranteID]);
 
-    async function handleDeleteIncident(id){
+   /* async function handleDeleteIncident(id){
         try
         {
             await api.delete(`incidents/${id}`, {
@@ -40,7 +43,7 @@ export default function Profile(){
             alert('Erro ao deletar caso, tente novamente.');
         }
 
-    }
+    }*/
 
     function handleLogout(){
         localStorage.clear();
@@ -51,8 +54,8 @@ export default function Profile(){
         <div className="profile-container">
             <header>
                 <img src={logoImg} alt="Cardápio Digital"/>
-                <span>Bem vindo, {ongName}</span>
-                <Link className="button" to="/items/new">Cadastrar um novo caso</Link>
+                <span>Bem vindo, {restauranteDados.nome}</span>
+                <Link className="button" to="/items/new">Cadastrar item ao cardápio</Link>
                 <button type="button" onClick={handleLogout}>
                     <FiPower size={16} color="#E02041"></FiPower>
                 </button>
@@ -61,21 +64,24 @@ export default function Profile(){
             <ul>
                 {incidents.map( incident => (
                     <li key={incident.id}>
-                        <strong>CASO:</strong>
-                        <p>{incident.title}</p>
+                        <strong>Item:</strong>
+                        <p>{incident.nome}</p>
     
                         <strong>DESCRIÇÃO:</strong>
-                        <p>{incident.description}</p>
+                        <p>{incident.descricao}</p>
     
                         <strong>VALOR:</strong>
-                        <p>{Intl.NumberFormat('pt-BR',{ style: 'currency', currency: 'BRL'}).format(incident.value)}</p>
+                        <p>{Intl.NumberFormat('pt-BR',{ style: 'currency', currency: 'BRL'}).format(incident.valor)}</p>
     
-                        <button type="button" onClick={() => handleDeleteIncident(incident.id)}>
-                            <FiTrash2 size={20} color="#a8a8b3"></FiTrash2>
-                        </button>
                     </li>
                  ))}
             </ul>
         </div>
     );
 }
+
+/*
+                        <button type="button" onClick={() => handleDeleteIncident(incident.id)}>
+                            <FiTrash2 size={20} color="#a8a8b3"></FiTrash2>
+                        </button>
+*/

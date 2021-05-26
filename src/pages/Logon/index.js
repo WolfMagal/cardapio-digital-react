@@ -4,7 +4,6 @@ import { FiLogIn } from 'react-icons/fi'
 import './styles.css';
 
 import api from '../../servers/api';
-import axios from 'axios';
 
 import logoImg from '../../assets/logo.png'
 import heroesImg from '../../assets/restaurant.jpg'
@@ -18,74 +17,26 @@ export default function Logon(){
 
         try
         {
-            const id = '7ecb2061';
+           // const id = '7ecb2061';
+            let responseUsuarios = await api.get('usuarios');
+            const responseRestaurante = await api.get('restaurantes');
 
-                var config = {
-                withCredentials: true,
-                method: 'get',
-                url: 'http://localhost:8080/api/v1/usuarios',
-                headers: { 
-                    Authorization: 'Basic YWRtaW46YWRtaW4=', 
-                    Cookie: 'JSESSIONID=7E30A9B42B3F8719A256E26ACE81625A'
-                },
-                auth: {
-                    username: 'admin',
-                    password: 'admin'
-                  }
-                };
+            responseUsuarios = responseUsuarios.data?.filter( u => u.email === email && u.senha === senha);
 
-                const response = await axios(config)
-                .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                })
-                .catch(function (error) {
-                console.log(error);
-                });
-
-            console.log(response);
-            /*const response = await api.get('http://localhost:8080/api/v1/usuarios', {   auth: {
-                username: 'admin',
-                password: 'admin'
-              },
-            headers: {
-                'Authorization': 'Basic YWRtaW46YWRtaW4=', 
-                "Accept": "application/json",
-                "Content-Type": "application/json"
+            if (!responseUsuarios)
+            {
+                alert('Falha no login, tente novamente ou efetue o casdastro.')
             }
-            });
-            console.log(response);*/
-            //const response = await api.get('usuarios');//const response = await api.post('sessions', {id});
+            else{
+                localStorage.setItem('usuarioDados',responseUsuarios[0]);
+                localStorage.setItem('restauranteDados',responseRestaurante.data[0]);
+                history.push('/profile');
+            }
 
-            /*var config = {
-                method: 'get'
-                headers: { 
-                    'Authorization': 'Basic YWRtaW46YWRtaW4=', 
-                    'Cookie': 'JSESSIONID=1C91581BC2A20DB6DEC572BA9BA8D5E6'
-                }
-            };*/
-
-            const headers = {
-                'Content-Type': "application/json",
-                'Authorization': 'Basic YWRtaW46YWRtaW4=',
-              };
-              const url = "http://localhost:8080/api/v1/usuarios";
-            
-              //const response = await axios.get(url, { headers });
-              //const response = await api.get('usuarios');
-
-            //const response = await api.get('usuarios');//.get('usuarios', config);
-
-            console.log(response);
-            //localStorage.setItem('ongId',id);
-            //localStorage.setItem('ongName',response.data);
-            history.push('/profile');
-
-          
         }
         catch(err)
         {
-            alert(err); //'Falha no login, tente novamente.')
-            console.log(err);
+            alert('Falha no login, tente novamente.')
         }
     }
 
