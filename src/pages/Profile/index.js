@@ -7,21 +7,19 @@ import api from '../../servers/api';
 
 export default function Profile(){
 
-    const [cardapio, setCardapio] = useState([]);
+    const [items, setItems] = useState([]);
     const history = useHistory();
-    const usuarioDados = localStorage.getItem('usuarioDados');
-    const restauranteDados = localStorage.getItem('restauranteDados');
-    const restauranteID = restauranteDados.id;
+   // const usuarioDados = localStorage.getItem('usuarioDados');
+    const restaurante = localStorage.getItem('restaurante');
+    const restauranteID = localStorage.getItem('restauranteID');
+    const restauranteNome = localStorage.getItem('restauranteNome');
 /*localStorage.setItem('usuarioDados',responseUsuarios[0]);
                 localStorage.setItem('restauranteDados',responseRestaurante.data[0]);
                 */
     useEffect(() => {
-        api.get(`restaurantes/produtos/${restauranteDados.id}`,{
-            headers: {
-                Authorization: restauranteID,
-            }
-        }).then( response =>{
-            setCardapio(response.data);
+        api.get(`restaurantes/produtos/${restauranteID}`)
+        .then( response =>{
+            setItems(response.data);
         } )
 
     }, [restauranteID]);
@@ -54,7 +52,7 @@ export default function Profile(){
         <div className="profile-container">
             <header>
                 <img src={logoImg} alt="Cardápio Digital"/>
-                <span>Bem vindo, {restauranteDados.nome}</span>
+                <span>Bem vindo, {restauranteNome}</span>
                 <Link className="button" to="/items/new">Cadastrar item ao cardápio</Link>
                 <button type="button" onClick={handleLogout}>
                     <FiPower size={16} color="#E02041"></FiPower>
@@ -62,16 +60,16 @@ export default function Profile(){
             </header>
             <h1>Casos cadastrados</h1>
             <ul>
-                {incidents.map( incident => (
-                    <li key={incident.id}>
+                {items.map( item => (
+                    <li key={item.id}>
                         <strong>Item:</strong>
-                        <p>{incident.nome}</p>
+                        <p>{item.nome}</p>
     
-                        <strong>DESCRIÇÃO:</strong>
-                        <p>{incident.descricao}</p>
+                        <strong>Descrição:</strong>
+                        <p>{item.descricao}</p>
     
-                        <strong>VALOR:</strong>
-                        <p>{Intl.NumberFormat('pt-BR',{ style: 'currency', currency: 'BRL'}).format(incident.valor)}</p>
+                        <strong>Valor:</strong>
+                        <p>{Intl.NumberFormat('pt-BR',{ style: 'currency', currency: 'BRL'}).format(item.valor)}</p>
     
                     </li>
                  ))}

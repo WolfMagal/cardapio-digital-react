@@ -18,18 +18,21 @@ export default function Logon(){
         try
         {
            // const id = '7ecb2061';
-            let responseUsuarios = await api.get('usuarios');
-            const responseRestaurante = await api.get('restaurantes');
+            const responseUsuarios = await api.get('usuarios');
+            const responseRestaurantes = await api.get('restaurantes');
 
-            responseUsuarios = responseUsuarios.data?.filter( u => u.email === email && u.senha === senha);
+            const responseUsuario = responseUsuarios.data?.find( u => u.email === email && u.senha === senha);
+            const responseRestaurante = responseRestaurantes.data?.find( u => u.nome !== '');
 
-            if (!responseUsuarios)
+            if (!responseUsuario)
             {
                 alert('Falha no login, tente novamente ou efetue o casdastro.')
             }
             else{
-                localStorage.setItem('usuarioDados',responseUsuarios[0]);
-                localStorage.setItem('restauranteDados',responseRestaurante.data[0]);
+                //localStorage.setItem('usuario',responseUsuario);
+                localStorage.setItem('restauranteID',responseRestaurante.id);
+                localStorage.setItem('restauranteNome',responseRestaurante.nome);
+                localStorage.setItem('restaurante',JSON.stringify(responseRestaurante));
                 history.push('/profile');
             }
 

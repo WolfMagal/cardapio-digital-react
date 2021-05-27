@@ -100,21 +100,25 @@ export default function Register() {
                     placeholder="Nome do Restaurante" 
                     value={name} 
                     onChange={e => setName(e.target.value)}
+                    required
                 />
                 <input 
                     type="email" 
                     placeholder="Email" 
                     value={email} onChange={e => setEmail(e.target.value)}
+                    required
                 />
                  <input 
                     type="password" 
                     placeholder="Senha" 
                     value={senha} onChange={e => setSenha(e.target.value)}
+                    required
                 />
                 <input 
                     placeholder="Endereço" 
                     value={endereco} 
                     onChange={e => setEndereco(e.target.value)} 
+                    required
                 />
                 <div className="input-group">
 
@@ -122,27 +126,32 @@ export default function Register() {
                     placeholder="Numero" 
                     style={{ width: 150}} 
                     value={numero} onChange={e => setNumero(e.target.value)}
+                    required
                 />
                 <input 
                     placeholder="Complemento" 
                     value={complemento} 
                     onChange={e => setComplemento(e.target.value)} 
+                    required
                 />
                 </div> 
                 <input 
                     placeholder="Bairro" 
                     value={bairro} onChange={e => setBairro(e.target.value)}
+                    required
                 />
                 <div className="input-group">
                     <input 
                         placeholder="Cidade" 
                         value={city} 
-                        onChange={e => setCity(e.target.value)} 
+                        onChange={e => setCity(e.target.value)}
+                        required
                     />
                     <input 
                         placeholder="UF" 
                         style={{ width: 80}} 
                         value={uf} onChange={e => setUF(e.target.value)}
+                        required
                     />
                 </div>
                 <button className="button" type="submit">Cadastrar</button>

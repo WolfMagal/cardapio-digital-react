@@ -11,7 +11,7 @@ export default function NewIncident(){
     const [description, setDescription] = useState('');
     const [value, setValue] = useState('');
 
-    const restauranteId = localStorage.getItem('restauranteId');
+    const restauranteId = localStorage.getItem('restauranteID');
     const history = useHistory();
 
    async function handleNewIncident(e){
@@ -21,16 +21,12 @@ export default function NewIncident(){
             "restauranteResponsavel": restauranteId,
             "nome": nome,
             "descricao": description,
-            "valor": value            
+            "valor": value.replace(',','.')            
         };
 
         try
         {
-            const response = await api.post('restaurantes/produtos', data,{
-                    headers: {
-                        Authorization: ongId,
-                    }
-                });
+            const response = await api.post('restaurantes/produtos', data);
 
             alert(`Novo caso salvo com sucesso: ${response.data.id}`);
 
@@ -38,7 +34,7 @@ export default function NewIncident(){
         }
         catch(err)
         {
-            alert('Erro ao cadastrar caso, tente novamente.')
+            alert('Erro ao cadastrar item no cardápio, tente novamente.')
         }
 
     }
@@ -57,18 +53,22 @@ export default function NewIncident(){
                 </section>
                 <form onSubmit={handleNewIncident}>
                     <input 
-                        placeholder="Título do caso" 
-                        value={title} 
-                        onChange={e => setTitle(e.target.value)}
+                        placeholder="Nome do item" 
+                        required
+                        value={nome} 
+                        onChange={e => setNome(e.target.value)}
                     />
                     <textarea 
                         placeholder="Descrição" 
+                        required
                         value={description} 
                         onChange={e => setDescription(e.target.value)}
                     />
                     <input 
                         placeholder="Valor em reais"
+                        required
                         value={value} 
+                        type="number"
                         onChange={e => setValue(e.target.value)} 
                     />
                     <button className="button" type="submit">Cadastrar</button>
