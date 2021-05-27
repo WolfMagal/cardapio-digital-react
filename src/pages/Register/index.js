@@ -39,39 +39,11 @@ export default function Register() {
             "nome": name,
             "produtosDisponiveis": []
         };
-        
-        /*const data ={
-                name,
-                email,
-                senha,
-                endereco,
-                city,
-                uf
-        };*/
 
         try
         {
-            //const getUsuario = await api.get('api/v1/usuarios');
-
-            //console.log(getUsuario);
-
             const usuario = await api.post('usuarios', dataUsuario);
             const restaurante = await api.post('restaurantes', dataRestaurante);
-
-           /* const usuario = await api.post('http://localhost:8080/api/v1/usuarios', dataUsuario, {
-                headers: {
-                    'Authorization': 'Basic YWRtaW46YWRtaW4=', 
-                    'Content-Type': 'application/json', 
-                    'Cookie': 'JSESSIONID=D038DA7FFD963082B22165CC27596C5A'
-                }
-            });*/
-           /* const restaurante = await api.post('restaurantes', dataRestaurante, {
-                headers: {
-                    'Authorization': 'Basic YWRtaW46YWRtaW4=', 
-                    'Content-Type': 'application/json', 
-                    'Cookie': 'JSESSIONID=D038DA7FFD963082B22165CC27596C5A'
-                }
-            });*/
 
             alert(`Seu Email de acesso: ${usuario.data.email} e o nome do seu restaurante: ${restaurante.data.nome}` );
 

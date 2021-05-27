@@ -17,7 +17,6 @@ export default function Logon(){
 
         try
         {
-           // const id = '7ecb2061';
             const responseUsuarios = await api.get('usuarios');
             const responseRestaurantes = await api.get('restaurantes');
 
@@ -29,7 +28,6 @@ export default function Logon(){
                 alert('Falha no login, tente novamente ou efetue o casdastro.')
             }
             else{
-                //localStorage.setItem('usuario',responseUsuario);
                 localStorage.setItem('restauranteID',responseRestaurante.id);
                 localStorage.setItem('restauranteNome',responseRestaurante.nome);
                 localStorage.setItem('restaurante',JSON.stringify(responseRestaurante));
