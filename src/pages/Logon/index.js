@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import {Link, useHistory} from 'react-router-dom';
-import { FiLogIn } from 'react-icons/fi'
+import React from 'react';
+import {useHistory} from 'react-router-dom';
 import './styles.css';
 
-import api from '../../servers/api';
 
 import logoImg from '../../assets/logo.png'
 import heroesImg from '../../assets/restaurant.jpg'
 export default function Logon(){
-    const [email,setEmail] = useState('');
-    const [senha,setSenha] = useState('');
+    const email = "admin@gmail.com";
+    const senha = "admin";
     const history = useHistory();
     async function handleLogin(e)
     {
@@ -17,22 +15,7 @@ export default function Logon(){
 
         try
         {
-            const responseUsuarios = await api.get('usuarios');
-            const responseRestaurantes = await api.get('restaurantes');
-
-            const responseUsuario = responseUsuarios.data?.find( u => u.email === email && u.senha === senha);
-            const responseRestaurante = responseRestaurantes.data?.find( u => u.nome !== '');
-
-            if (!responseUsuario)
-            {
-                alert('Falha no login, tente novamente ou efetue o casdastro.')
-            }
-            else{
-                localStorage.setItem('restauranteID',responseRestaurante.id);
-                localStorage.setItem('restauranteNome',responseRestaurante.nome);
-                localStorage.setItem('restaurante',JSON.stringify(responseRestaurante));
-                history.push('/profile');
-            }
+            history.push('/profile');
 
         }
         catch(err)
@@ -51,19 +34,13 @@ export default function Logon(){
                 <input 
                     placeholder="Email"
                     value={email} 
-                    onChange={e => setEmail(e.target.value)}
                 />
                 <input 
                     placeholder="Senha"
                     type="password"
-                    value={senha} 
-                    onChange={e => setSenha(e.target.value)}
+                    value={senha}
                 />
                 <button className="button" type="submit">Entrar</button>
-                <Link className="back-link" to="/register">
-                   <FiLogIn size={16} color="#E02041"/>
-                   Não tenho cadastro
-               </Link>
             </form>
             </section>
             <img src={heroesImg} alt="Restaurante"/>
