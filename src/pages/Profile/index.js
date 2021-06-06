@@ -10,34 +10,33 @@ export default function Profile(){
     const history = useHistory();
     const restauranteID = 1;
     const restauranteNome = 'Restaurante Paulista'
-    const data = [
-        {
-            id: 1,
-            nome: "Saint Peter",
-            descricao: "Filet de Saint Peter grelhado de 180 gramas com base de shallots, creme de leite e vinho branco acompanhado de arroz primavera e aspargos grelhados.",
-            valor: 59.90,
-        },
-        {
-            id: 2,
-            nome: "Feijoada",
-            descricao: "Feijoada light.",
-            valor: 30.50,
-        },
-        {
-            id: 3,
-            nome: "Filet Mignon à Parmegiana",
-            descricao: "À milanesa, molho ao sugo e mussarela, batatas fritas e arroz branco.",
-            valor: 35.90,
-        },
-        {
-            id: 4,
-            nome: "Salmão Mediterrâneo",
-            descricao: "Salmão grelhado de 150 gramas com tomatinhos assados à provençal, arroz negro com cogumelos salteados e aspargos grelhados.",
-            valor: 67.90,
-        }
-    ];
     useEffect(() => {
-
+        const data = [
+            {
+                id: 1,
+                nome: "Saint Peter",
+                descricao: "Filet de Saint Peter grelhado de 180 gramas com base de shallots, creme de leite e vinho branco acompanhado de arroz primavera e aspargos grelhados.",
+                valor: 59.90,
+            },
+            {
+                id: 2,
+                nome: "Feijoada",
+                descricao: "Feijoada light.",
+                valor: 30.50,
+            },
+            {
+                id: 3,
+                nome: "Filet Mignon à Parmegiana",
+                descricao: "À milanesa, molho ao sugo e mussarela, batatas fritas e arroz branco.",
+                valor: 35.90,
+            },
+            {
+                id: 4,
+                nome: "Salmão Mediterrâneo",
+                descricao: "Salmão grelhado de 150 gramas com tomatinhos assados à provençal, arroz negro com cogumelos salteados e aspargos grelhados.",
+                valor: 67.90,
+            }
+        ];
         setItems(data);
 
     }, [restauranteID]);
