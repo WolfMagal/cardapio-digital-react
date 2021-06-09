@@ -6,7 +6,8 @@
   <a href="#memo-sobre">Sobre</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-colaboradores">Colaboradores</a>
+  <a href="#-colaboradores">Colaboradores</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-sistema">Sistema</a>
 </p>
 
 <br>
@@ -39,3 +40,23 @@ Desenvolvido pelos profissionais:
 - [Leonardo Gusmão dos Santos](https://www.linkedin.com/in/leonardo-gusm%C3%A3o-44b7a9115/)
 - [Rafael Magalhães](https://www.linkedin.com/in/rlmagalhaes/)
 - [Gabriel Leme](https://linkedin.com/in/gabriel-leme-71325b150)
+
+## 📱 Sistema
+
+- Cadastro
+
+![image](https://user-images.githubusercontent.com/60040966/121426947-88834800-c94a-11eb-9f1d-aa3594d81337.png)
+
+- Login
+
+![image](https://user-images.githubusercontent.com/60040966/121427041-a18bf900-c94a-11eb-88cb-d50609395c84.png)
+
+- Profile
+
+![image](https://user-images.githubusercontent.com/60040966/121427186-cbddb680-c94a-11eb-8597-ac57c71cc58a.png)
+
+- Novos Itens
+
+![image](https://user-images.githubusercontent.com/60040966/121427668-5faf8280-c94b-11eb-9b60-884475a386ca.png)
+![image](https://user-images.githubusercontent.com/60040966/121427708-6a6a1780-c94b-11eb-956d-ee3174e66794.png)
+
