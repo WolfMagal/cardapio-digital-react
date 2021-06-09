@@ -32,6 +32,17 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 O projeto foi desenvolvido na terceira fase do curso da FIAP, com o objetivo de colocar em prática o desenvolvimento do front em React onde consome os web services desenvolvidos em Java Spring.
 
+- Instalar dependências
+
+```
+ npm i
+```
+- Iniciar projeto
+
+```
+ npm start
+```
+
 ## 👔 Colaboradores
 
 Desenvolvido pelos profissionais:
